@@ -1,0 +1,53 @@
+<assembly>
+    <id>assembly</id>
+    <formats>
+        <format>tar.gz</format>
+    </formats>
+    <includeBaseDirectory>true</includeBaseDirectory>
+    <fileSets>
+        <fileSet>
+            <directory>assembly/bin</directory>
+            <outputDirectory>bin</outputDirectory>
+            <fileMode>0755</fileMode>
+        </fileSet>
+        <fileSet>
+            <directory>assembly/docs</directory>
+            <outputDirectory>docs</outputDirectory>
+            <fileMode>0644</fileMode>
+        </fileSet>
+        <fileSet>
+            <directory>${project.build.outputDirectory}</directory>
+            <outputDirectory>conf</outputDirectory>
+            <fileMode>0644</fileMode>
+            <includes>
+                <include>**/*.properties</include>
+                <include>*.xml</include>
+                <include>*.csv</include>
+            </includes>
+        </fileSet>
+        <fileSet>
+            <directory>assembly/env/${package.env}</directory>
+            <outputDirectory>conf</outputDirectory>
+            <fileMode>0644</fileMode>
+        </fileSet>
+        <fileSet>
+            <directory>target</directory>
+            <outputDirectory>/</outputDirectory>
+            <fileMode>0644</fileMode>
+            <includes>
+                <include>${artifactId}-${version}.jar</include>
+            </includes>
+        </fileSet>
+        <fileSet>
+            <directory>${project.build.directory}/lib</directory>
+            <outputDirectory>lib</outputDirectory>
+            <fileMode>0644</fileMode>
+            <excludes>
+                <exclude>junit-*.jar</exclude>
+                <exclude>spring-test-*.jar</exclude>
+                <exclude>jconsole-*.jar</exclude> <!-- jdk 本身的jar，不知道为什么被导出了 -->
+                <exclude>tools-*.jar</exclude> <!-- jdk 本身的jar，不知道为什么被导出了 -->
+            </excludes>
+        </fileSet>
+    </fileSets>
+</assembly>
