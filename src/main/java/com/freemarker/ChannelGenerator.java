@@ -30,9 +30,6 @@ public class ChannelGenerator {
         String author = "daniel";//作者
         String port = "20641";//服务端口
 
-
-
-
         Configuration cfg = new Configuration(Configuration.VERSION_2_3_27);
         cfg.setDirectoryForTemplateLoading(new File(Thread.currentThread().getContextClassLoader().getResource("").toURI().getPath()));
         cfg.setDefaultEncoding("UTF-8");
